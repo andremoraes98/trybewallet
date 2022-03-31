@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { saveExpenseInfos, fetchEconomyJSONFromAPI } from '../actions';
 
 class WalletForm extends Component {
   constructor() {
@@ -9,9 +10,9 @@ class WalletForm extends Component {
     this.state = {
       valueInput: '',
       descriptionInput: '',
-      currenciesInput: '',
-      methodInput: '',
-      tag: '',
+      currenciesInput: 'USD',
+      methodInput: 'Dinheiro',
+      tag: 'Alimentação',
     };
   }
 
@@ -20,6 +21,12 @@ class WalletForm extends Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  addExpense = () => {
+    const { saveInfosInExpenses, getEconomyInInstant, expenses } = this.props;
+    getEconomyInInstant();
+    saveInfosInExpenses(expenses.length, this.state);
   }
 
   render() {
@@ -102,6 +109,13 @@ class WalletForm extends Component {
             <option>Saúde</option>
           </select>
         </label>
+
+        <button
+          type="button"
+          onClick={ this.addExpense }
+        >
+          Adicionar despesa
+        </button>
       </form>
     );
   }
@@ -109,10 +123,20 @@ class WalletForm extends Component {
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
+  expenses: state.wallet.expenses,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  saveInfosInExpenses: (
+    id, expenseInfos, exchangeRates,
+  ) => dispatch(saveExpenseInfos(id, expenseInfos, exchangeRates)),
+  getEconomyInInstant: () => dispatch(fetchEconomyJSONFromAPI()),
 });
 
 WalletForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  saveInfosInExpenses: PropTypes.func.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default connect(mapStateToProps)(WalletForm);
+export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);

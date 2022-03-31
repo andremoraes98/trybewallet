@@ -1,4 +1,8 @@
-import { START_REQUEST, SAVE_CURRENCY } from '../actions';
+import {
+  START_REQUEST,
+  SAVE_CURRENCY,
+  SAVE_EXPENSE_INFO,
+  SAVE_ECONOMY_CURRENCY } from '../actions';
 
 const WALLET_INITIAL_STATE = {
   currencies: [],
@@ -18,6 +22,16 @@ const wallet = (state = WALLET_INITIAL_STATE, action) => {
       ...state,
       currencies: action.currencies,
       isFetching: false,
+    };
+  case SAVE_EXPENSE_INFO:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.expenseInfos],
+    };
+  case SAVE_ECONOMY_CURRENCY:
+    return {
+      ...state,
+      exchangeRates: action.exchangeRates,
     };
   default:
     return state;
