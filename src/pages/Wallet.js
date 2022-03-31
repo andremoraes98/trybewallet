@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
 import { fetchCurrencyJSONFromAPI } from '../actions';
 import Header from '../components/Header';
+import WalletForm from '../components/WalletForm';
 
 class Wallet extends React.Component {
   componentDidMount() {
@@ -11,7 +12,12 @@ class Wallet extends React.Component {
   }
 
   render() {
-    return <Header />;
+    return (
+      <>
+        <Header />
+        <WalletForm />
+      </>
+    );
   }
 }
 
