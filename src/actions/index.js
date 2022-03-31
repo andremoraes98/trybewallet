@@ -29,7 +29,11 @@ export const fetchCurrencyJSONFromAPI = () => async (dispatch) => {
 
 export const saveExpenseInfos = (id, expenseInfos, exchangeRates) => ({
   type: SAVE_EXPENSE_INFO,
-  expenseInfos: { id, ...expenseInfos, ...exchangeRates },
+  expenseInfos: {
+    id,
+    ...expenseInfos,
+    exchangeRates,
+  },
 });
 
 export const getEconomiesOfCurrency = (economy) => ({
@@ -37,11 +41,11 @@ export const getEconomiesOfCurrency = (economy) => ({
   economy,
 });
 
-export const fetchEconomyJSONFromAPI = () => async (dispatch) => {
+export const fetchEconomyJSONFromAPI = (id, expenseInfos) => async (dispatch) => {
   dispatch(requestJSON());
   const response = await fetch(URL_ECONOMIA);
   const data = await response.json();
   const dataWithOutUSDT = Object.entries(data)
     .filter((currency) => currency[0] !== 'USDT');
-  return dispatch(getEconomiesOfCurrency(dataWithOutUSDT));
+  return dispatch(saveExpenseInfos(id, expenseInfos, dataWithOutUSDT));
 };

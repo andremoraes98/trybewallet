@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { saveExpenseInfos, fetchEconomyJSONFromAPI } from '../actions';
+import { fetchEconomyJSONFromAPI } from '../actions';
 
 class WalletForm extends Component {
   constructor() {
@@ -24,9 +24,8 @@ class WalletForm extends Component {
   }
 
   addExpense = () => {
-    const { saveInfosInExpenses, getEconomyInInstant, expenses } = this.props;
-    getEconomyInInstant();
-    saveInfosInExpenses(expenses.length, this.state);
+    const { saveExpenseInfos, expenses } = this.props;
+    saveExpenseInfos(expenses.length, this.state);
   }
 
   render() {
@@ -127,15 +126,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  saveInfosInExpenses: (
-    id, expenseInfos, exchangeRates,
-  ) => dispatch(saveExpenseInfos(id, expenseInfos, exchangeRates)),
-  getEconomyInInstant: () => dispatch(fetchEconomyJSONFromAPI()),
+  saveExpenseInfos: (
+    id, expenseInfos,
+  ) => dispatch(fetchEconomyJSONFromAPI(id, expenseInfos)),
 });
 
 WalletForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  saveInfosInExpenses: PropTypes.func.isRequired,
+  saveExpenseInfos: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
