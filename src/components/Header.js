@@ -13,8 +13,9 @@ class Header extends Component {
         </p>
 
         <p data-testid="total-field">
-          { totalValue }
+          { totalValue || 0 }
         </p>
+
         <p data-testid="header-currency-field">
           BRL
         </p>
