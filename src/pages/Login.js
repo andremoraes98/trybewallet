@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { saveEmail } from '../actions';
+import crypto from '../images/crypto.png';
 
 class Login extends React.Component {
   constructor() {
@@ -41,10 +42,12 @@ class Login extends React.Component {
       willRedirect
         ? <Redirect to="/carteira" />
         : (
-          <div>
+          <div className="login">
+            <img src={ crypto } alt="Crypto Wallet" />
             <input
               type="text"
               name="emailInput"
+              className="loginInput"
               placeholder="E-mail"
               value={ emailInput }
               onChange={ this.handleChange }
@@ -54,6 +57,7 @@ class Login extends React.Component {
             <input
               type="password"
               name="passwordInput"
+              className="loginInput"
               value={ passwordInput }
               onChange={ this.handleChange }
               placeholder="Senha"

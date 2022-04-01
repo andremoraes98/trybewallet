@@ -12,6 +12,46 @@ code {
     monospace;
 }
 
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  align-items: center;
+  margin: calc(60vh/2) auto;
+  border: 1px solid black;
+  padding: 40px 0;
+  border-radius: 10px;
+  box-shadow: 15px 15px 20px blue;
+}
+
+.login img {
+  width: 30%;
+  margin-bottom: 50px;
+}
+
+.loginInput {
+  margin: 5px 0;
+  width: 60%;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.login button {
+  margin-top: 20px;
+  cursor: pointer;
+  width: 88px;
+  height: 44px;
+  border-radius: 22px;
+  font-size: 17px;
+  background-color: blue;
+  color: #FFF;
+  font-weight: 900;
+  border: 1px solid black;
+}
+
 form, tr {
   display: flex;
   justify-content: space-around;

@@ -26,7 +26,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   userEmail: state.user.email,
-  totalValue: state.wallet.totalValue || 0,
+  totalValue: state.wallet.totalValue,
 });
 
 Header.propTypes = {
