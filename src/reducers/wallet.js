@@ -1,7 +1,8 @@
 import {
   START_REQUEST,
   SAVE_CURRENCY,
-  SAVE_EXPENSE_INFO } from '../actions';
+  SAVE_EXPENSE_INFO,
+  DELETE_EXPENSE } from '../actions';
 
 const WALLET_INITIAL_STATE = {
   currencies: [],
@@ -30,6 +31,13 @@ const wallet = (state = WALLET_INITIAL_STATE, action) => {
       expenses: [...state.expenses, action.expenseInfos],
       totalValue: state.totalValue + action.value,
       expenseValue: action.value,
+    };
+  case DELETE_EXPENSE:
+    return {
+      ...state,
+      expenses: state.expenses.filter((expense) => expense.id !== action.expenseId),
+      totalValue: state.totalValue - state.expenses
+        .filter((expense) => expense.id !== action.expenseId).value,
     };
   default:
     return state;
