@@ -1,13 +1,13 @@
 import {
   START_REQUEST,
   SAVE_CURRENCY,
-  SAVE_EXPENSE_INFO,
-  SAVE_ECONOMY_CURRENCY } from '../actions';
+  SAVE_EXPENSE_INFO } from '../actions';
 
 const WALLET_INITIAL_STATE = {
   currencies: [],
   expenses: [],
   isFetching: false,
+  totalValue: 0,
 };
 
 const wallet = (state = WALLET_INITIAL_STATE, action) => {
@@ -27,11 +27,7 @@ const wallet = (state = WALLET_INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses, action.expenseInfos],
-    };
-  case SAVE_ECONOMY_CURRENCY:
-    return {
-      ...state,
-      exchangeRates: action.exchangeRates,
+      totalValue: parseFloat((state.totalValue + action.value).toFixed(2)),
     };
   default:
     return state;

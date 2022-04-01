@@ -27,25 +27,28 @@ export const fetchCurrencyJSONFromAPI = () => async (dispatch) => {
   return dispatch(getInitialsOfCurrency(dataWithOutUSDT));
 };
 
-export const saveExpenseInfos = (id, expenseInfos, exchangeRates) => ({
-  type: SAVE_EXPENSE_INFO,
-  expenseInfos: {
-    id,
-    ...expenseInfos,
-    exchangeRates,
-  },
-});
-
-export const getEconomiesOfCurrency = (economy) => ({
-  type: SAVE_ECONOMY_CURRENCY,
-  economy,
-});
+export const saveExpenseInfos = (id, expenseInfos, exchangeRates) => {
+  const valueCurrencyInBRL = Object.entries(exchangeRates)
+    .filter((currency) => currency[0] === expenseInfos.currency);
+  console.log();
+  return ({
+    type: SAVE_EXPENSE_INFO,
+    expenseInfos: {
+      id,
+      ...expenseInfos,
+      exchangeRates,
+    },
+    value: (
+      Number.isNaN(parseFloat(expenseInfos.value))
+        ? 0
+        : parseFloat(parseFloat(expenseInfos.value) * (valueCurrencyInBRL[0][1].ask))
+    ),
+  });
+};
 
 export const fetchEconomyJSONFromAPI = (id, expenseInfos) => async (dispatch) => {
   dispatch(requestJSON());
   const response = await fetch(URL_ECONOMIA);
   const data = await response.json();
-  const dataWithOutUSDT = Object.entries(data)
-    .filter((currency) => currency[0] !== 'USDT');
-  return dispatch(saveExpenseInfos(id, expenseInfos, dataWithOutUSDT));
+  return dispatch(saveExpenseInfos(id, expenseInfos, data));
 };
