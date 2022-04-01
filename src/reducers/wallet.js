@@ -8,6 +8,7 @@ const WALLET_INITIAL_STATE = {
   expenses: [],
   isFetching: false,
   totalValue: 0,
+  expenseValue: 0,
 };
 
 const wallet = (state = WALLET_INITIAL_STATE, action) => {
@@ -28,6 +29,7 @@ const wallet = (state = WALLET_INITIAL_STATE, action) => {
       ...state,
       expenses: [...state.expenses, action.expenseInfos],
       totalValue: state.totalValue + action.value,
+      expenseValue: action.value,
     };
   default:
     return state;

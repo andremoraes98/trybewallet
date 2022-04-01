@@ -9,12 +9,13 @@ class Expenses extends Component {
       <tbody>
         { expenses.map((expense, index) => {
           const twoDecimalDigitsValue = parseFloat(expense.value).toFixed(2);
-          const twoDecimalDigitsConvertedValue = parseFloat(expense.valueBRL).toFixed(2);
           const currencyArray = Object
             .entries(expense.exchangeRates)
             .filter((currency) => currency[0] === expense.currency);
           const currencyName = currencyArray[0][1].name;
           const currencyChange = parseFloat(currencyArray[0][1].ask).toFixed(2);
+          const twoDecimalDigitsConvertedValue = (expense.value * currencyArray[0][1].ask)
+            .toFixed(2);
           return (
             <tr key={ index }>
               <td>{expense.description}</td>

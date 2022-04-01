@@ -30,7 +30,6 @@ export const fetchCurrencyJSONFromAPI = () => async (dispatch) => {
 export const saveExpenseInfos = (id, expenseInfos, exchangeRates) => {
   const valueCurrencyInBRL = Object.entries(exchangeRates)
     .filter((currency) => currency[0] === expenseInfos.currency);
-  console.log();
   return ({
     type: SAVE_EXPENSE_INFO,
     expenseInfos: {

@@ -13,7 +13,7 @@ class Header extends Component {
         </p>
 
         <p data-testid="total-field">
-          { totalValue || 0 }
+          { totalValue }
         </p>
 
         <p data-testid="header-currency-field">
@@ -26,7 +26,7 @@ class Header extends Component {
 
 const mapStateToProps = (state) => ({
   userEmail: state.user.email,
-  totalValue: state.wallet.totalValue,
+  totalValue: state.wallet.totalValue || 0,
 });
 
 Header.propTypes = {
