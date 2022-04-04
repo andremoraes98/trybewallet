@@ -57,6 +57,7 @@ code {
 form, tr {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 th, td {
@@ -68,7 +69,7 @@ table {
   margin: 50px auto;
 }
 
-header, .userInfos {
+header, .userInfos, label {
   display: flex;
 }
 
@@ -77,8 +78,42 @@ header {
   align-items: center;
   background-color: #FFF;
   padding: 10px 20px;
+  color: #4a6492;
 }
 
 header img {
   width: 70px;
+}
+
+label {
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+label input, label select {
+  padding: 0 10px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid black;
+  height: 30px;
+  background-color: #FFF;
+}
+
+form {
+  padding: 10px 20px;
+  background-color: #4a6492;
+  color: #FFF;
+}
+
+form button {
+  padding: 10px 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-weight: 900;
+  width: 10%;
+  background-color: #fbe692;
+  color: #91733d;
+  font-size: 17px;
 }
