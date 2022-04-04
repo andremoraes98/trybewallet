@@ -50,13 +50,7 @@ export const saveExpenseInfos = (id, expenseInfos, exchangeRates) => {
       ...expenseInfos,
       exchangeRates,
     },
-    value: (
-      Number.isNaN(parseFloat(expenseInfos.value))
-        ? 0
-        : Math.trunc(
-          parseFloat(expenseInfos.value * (valueCurrencyInBRL[0][1].ask)) * 100,
-        ) / 100
-    ),
+    value: Math.trunc(expenseInfos.value * (valueCurrencyInBRL[0][1].ask) * 100) / 100,
   });
 };
 

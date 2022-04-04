@@ -33,7 +33,7 @@ const wallet = (state = WALLET_INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses, action.expenseInfos],
-      totalValue: state.totalValue + action.value,
+      totalValue: state.totalValue + parseFloat(action.value),
       expenseValue: action.value,
     };
   case DELETE_EXPENSE:
