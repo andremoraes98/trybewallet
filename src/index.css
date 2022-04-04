@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #7fb1fb;
 }
 
 code {
@@ -21,7 +22,8 @@ code {
   border: 1px solid black;
   padding: 40px 0;
   border-radius: 10px;
-  box-shadow: 15px 15px 20px blue;
+  box-shadow: 15px 15px 20px #4a6492;
+  background-color: #FFF;
 }
 
 .login img {
@@ -64,4 +66,19 @@ th, td {
 
 table {
   margin: 50px auto;
+}
+
+header, .userInfos {
+  display: flex;
+}
+
+header {
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFF;
+  padding: 10px 20px;
+}
+
+header img {
+  width: 70px;
 }
