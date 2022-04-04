@@ -56,17 +56,36 @@ code {
 
 form, tr {
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  border-bottom: black solid 1px;
 }
 
 th, td {
   width: calc(80vw / 9);
   text-align: center;
+  flex-grow: 1;
+  color: #FFF;
+  font-weight: 900;
 }
 
 table {
+  width: 100%;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
   margin: 50px auto;
+  border: black solid 2px;
+  background-color: #4a6492;
+  width: 95%;
+}
+
+tbody {
+  background-color: #628dcc;
+}
+
+tbody tr {
+  line-height: 30px;
+  border-style: solid 1px;
+  border-bottom-color: #FFF;
 }
 
 header, .userInfos, label {
@@ -79,6 +98,7 @@ header {
   background-color: #FFF;
   padding: 10px 20px;
   color: #4a6492;
+  border-bottom: black solid 1px;
 }
 
 header img {
@@ -116,4 +136,8 @@ form button {
   background-color: #fbe692;
   color: #91733d;
   font-size: 17px;
+}
+
+thead {
+  line-height: 60px;
 }
