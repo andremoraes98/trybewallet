@@ -21,9 +21,9 @@ class WalletForm extends Component {
     });
   }
 
-  addExpense = (expenseId) => {
+  addExpense = () => {
     const { changeExpenseInfo } = this.props;
-    changeExpenseInfo(expenseId, this.state);
+    changeExpenseInfo(this.state);
     this.setState({
       value: '',
       description: '',

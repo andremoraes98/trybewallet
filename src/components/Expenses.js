@@ -38,7 +38,9 @@ class Expenses extends Component {
                 <button
                   type="button"
                   data-testid="delete-btn"
-                  onClick={ () => dispatchDeleteExpense(expense.id) }
+                  onClick={ () => dispatchDeleteExpense(
+                    expense.id, twoDecimalDigitsConvertedValue,
+                  ) }
                 >
                   Excluir
                 </button>
@@ -55,7 +57,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchDeleteExpense: (expense) => dispatch(deleteExpense(expense)),
+  dispatchDeleteExpense: (expenseId, expenseValue) => dispatch(deleteExpense(
+    expenseId, expenseValue,
+  )),
   dispatchEditExpense: (expense) => dispatch(editExpense(expense)),
 });
 

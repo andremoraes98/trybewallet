@@ -22,9 +22,10 @@ export const getInitialsOfCurrency = (currencies) => ({
   currencies,
 });
 
-export const deleteExpense = (expenseId) => ({
+export const deleteExpense = (expenseId, expenseValue) => ({
   type: DELETE_EXPENSE,
   expenseId,
+  expenseValue: parseFloat(expenseValue),
 });
 
 export const editExpense = (expenseId) => ({
@@ -50,7 +51,7 @@ export const saveExpenseInfos = (id, expenseInfos, exchangeRates) => {
       ...expenseInfos,
       exchangeRates,
     },
-    value: Math.trunc(expenseInfos.value * (valueCurrencyInBRL[0][1].ask) * 100) / 100,
+    value: expenseInfos.value * (valueCurrencyInBRL[0][1].ask),
   });
 };
 
@@ -61,7 +62,7 @@ export const fetchEconomyJSONFromAPI = (id, expenseInfos) => async (dispatch) =>
   return dispatch(saveExpenseInfos(id, expenseInfos, data));
 };
 
-export const changeExpense = (expenseId, editedExpense) => ({
+export const changeExpense = (editedExpense) => ({
   type: CHANGE_EXPENSE,
   editedExpense,
 });

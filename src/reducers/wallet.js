@@ -33,15 +33,14 @@ const wallet = (state = WALLET_INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses, action.expenseInfos],
-      totalValue: state.totalValue + parseFloat(action.value),
+      totalValue: Math.trunc((state.totalValue + action.value) * 100) / 100,
       expenseValue: action.value,
     };
   case DELETE_EXPENSE:
     return {
       ...state,
       expenses: state.expenses.filter((expense) => expense.id !== action.expenseId),
-      totalValue: state.totalValue - state.expenses
-        .filter((expense) => expense.id !== action.expenseId).value,
+      totalValue: parseFloat(state.totalValue - action.expenseValue),
     };
   case EDIT_EXPENSE:
     return {
