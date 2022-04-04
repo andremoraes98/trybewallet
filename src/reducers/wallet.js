@@ -2,7 +2,9 @@ import {
   START_REQUEST,
   SAVE_CURRENCY,
   SAVE_EXPENSE_INFO,
-  DELETE_EXPENSE } from '../actions';
+  DELETE_EXPENSE,
+  EDIT_EXPENSE,
+  CHANGE_EXPENSE } from '../actions';
 
 const WALLET_INITIAL_STATE = {
   currencies: [],
@@ -10,6 +12,8 @@ const WALLET_INITIAL_STATE = {
   isFetching: false,
   totalValue: 0,
   expenseValue: 0,
+  wantToEdit: false,
+  selectedExpense: {},
 };
 
 const wallet = (state = WALLET_INITIAL_STATE, action) => {
@@ -38,6 +42,20 @@ const wallet = (state = WALLET_INITIAL_STATE, action) => {
       expenses: state.expenses.filter((expense) => expense.id !== action.expenseId),
       totalValue: state.totalValue - state.expenses
         .filter((expense) => expense.id !== action.expenseId).value,
+    };
+  case EDIT_EXPENSE:
+    return {
+      ...state,
+      wantToEdit: true,
+      selectedExpense: state.expenses[action.expenseId],
+    };
+  case CHANGE_EXPENSE:
+    return {
+      ...state,
+      wantToEdit: false,
+      expenses: state.expenses.map((expense) => (expense.id === action.editedExpense.id
+        ? action.editedExpense
+        : expense)),
     };
   default:
     return state;

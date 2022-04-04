@@ -136,6 +136,7 @@ form button {
   background-color: #fbe692;
   color: #91733d;
   font-size: 17px;
+  cursor: pointer;
 }
 
 thead {

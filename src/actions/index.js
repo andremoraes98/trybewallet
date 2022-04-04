@@ -4,6 +4,8 @@ export const SAVE_CURRENCY = 'SAVE_CURRENCY';
 export const SAVE_ECONOMY_CURRENCY = 'SAVE_ECONOMY_CURRENCY';
 export const SAVE_EXPENSE_INFO = 'SAVE_EXPENSE_INFO';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const CHANGE_EXPENSE = 'CHANGE_EXPENSE';
 const URL_ECONOMIA = 'https://economia.awesomeapi.com.br/json/all';
 
 export const saveEmail = (email) => ({
@@ -22,6 +24,11 @@ export const getInitialsOfCurrency = (currencies) => ({
 
 export const deleteExpense = (expenseId) => ({
   type: DELETE_EXPENSE,
+  expenseId,
+});
+
+export const editExpense = (expenseId) => ({
+  type: EDIT_EXPENSE,
   expenseId,
 });
 
@@ -59,3 +66,8 @@ export const fetchEconomyJSONFromAPI = (id, expenseInfos) => async (dispatch) =>
   const data = await response.json();
   return dispatch(saveExpenseInfos(id, expenseInfos, data));
 };
+
+export const changeExpense = (expenseId, editedExpense) => ({
+  type: CHANGE_EXPENSE,
+  editedExpense,
+});

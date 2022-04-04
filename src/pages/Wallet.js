@@ -5,6 +5,7 @@ import { fetchCurrencyJSONFromAPI } from '../actions';
 import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
 import Table from '../components/Table';
+import EdittionWalletForm from '../components/EdittionWalletForm';
 
 class Wallet extends React.Component {
   componentDidMount() {
@@ -13,15 +14,20 @@ class Wallet extends React.Component {
   }
 
   render() {
+    const { wantToEdit } = this.props;
     return (
       <>
         <Header />
-        <WalletForm />
+        { wantToEdit ? <EdittionWalletForm /> : <WalletForm /> }
         <Table />
       </>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  wantToEdit: state.wallet.wantToEdit,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   getDataFromAPI: () => dispatch(fetchCurrencyJSONFromAPI()),
@@ -29,6 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 Wallet.propTypes = {
   getDataFromAPI: Proptypes.func.isRequired,
+  wantToEdit: Proptypes.bool.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Wallet);
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
