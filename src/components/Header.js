@@ -9,23 +9,24 @@ class Header extends Component {
     const totalValue = expenses
       .reduce((acumulator, expense) => acumulator + (expense.value * expense
         .exchangeRates[expense.currency].ask), 0);
-    console.log(totalValue);
     return (
       <header>
         <img src={ crypto } alt="Crypto Wallet" />
         <div className="userInfos">
-          <p>
+          <span>
             Email:
             <span data-testid="email-field">{userEmail}</span>
-          </p>
+          </span>
 
-          <p data-testid="total-field">
-            { totalValue.toFixed(2) }
-          </p>
+          <div>
+            <span data-testid="total-field">
+              { totalValue.toFixed(2) }
+            </span>
 
-          <p data-testid="header-currency-field">
-            BRL
-          </p>
+            <span data-testid="header-currency-field">
+              BRL
+            </span>
+          </div>
         </div>
       </header>
     );

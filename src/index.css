@@ -41,6 +41,12 @@ code {
   border: 1px solid black;
 }
 
+.login button:disabled {
+  cursor: not-allowed;
+  background-color: rgb(179, 179, 179);
+  color: gray;
+}
+
 .login button {
   margin-top: 20px;
   cursor: pointer;
@@ -48,11 +54,12 @@ code {
   height: 44px;
   border-radius: 22px;
   font-size: 17px;
-  background-color: blue;
-  color: #FFF;
+  background-color: #7fb1fb;
+  color: #304c7c;
   font-weight: 900;
   border: 1px solid black;
 }
+
 
 form, tr {
   display: flex;
@@ -83,7 +90,6 @@ tbody {
 }
 
 tbody tr {
-  line-height: 30px;
   border-style: solid 1px;
   border-bottom-color: #FFF;
 }
@@ -133,12 +139,60 @@ form button {
   border: 1px solid black;
   font-weight: 900;
   width: 10%;
-  background-color: #fbe692;
-  color: #91733d;
+  background-color: rgb(255, 133, 133);
+  color: rgb(223, 0, 0);
   font-size: 17px;
   cursor: pointer;
 }
 
-thead {
-  line-height: 60px;
+tr {
+  height: 100px;
+}
+
+.userInfos {
+  flex-direction: column;
+  text-align: center;
+}
+
+.userInfos span {
+  margin: 5px;
+}
+
+td button {
+  padding: 10px 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-weight: 900;
+  background-color: #fbe692;
+  color: #91733d;
+  font-size: 17px;
+  cursor: pointer;
+  width: 70%;
+}
+
+.delete-btn {
+  background-color: rgb(100, 224, 100);
+  color: green;
+  margin-top: 10px;
+}
+
+.edit-btn svg, .delete-btn svg {
+  margin-right: 5px;
+}
+
+.buttons-td {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+}
+
+.add-btn svg {
+  width: 25px;
+  height: 25px;
 }

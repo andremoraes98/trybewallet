@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { FaPlus } from 'react-icons/fa';
 import { fetchEconomyJSONFromAPI } from '../actions';
 
 const ALIMENTAÇÃO = 'Alimentação';
@@ -121,7 +122,9 @@ class WalletForm extends Component {
         <button
           type="button"
           onClick={ this.addExpense }
+          className="add-btn"
         >
+          <FaPlus />
           Adicionar despesa
         </button>
       </form>

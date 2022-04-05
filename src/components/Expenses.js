@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { BiEdit, BiTrashAlt } from 'react-icons/bi';
 import { deleteExpense, editExpense } from '../actions';
 
 class Expenses extends Component {
@@ -27,21 +28,25 @@ class Expenses extends Component {
               <td>{currencyChange}</td>
               <td>{twoDecimalDigitsConvertedValue}</td>
               <td>Real</td>
-              <td>
+              <td className="buttons-td">
                 <button
                   type="button"
                   data-testid="edit-btn"
+                  className="edit-btn"
                   onClick={ () => dispatchEditExpense(expense.id) }
                 >
+                  <BiEdit />
                   Editar
                 </button>
                 <button
                   type="button"
                   data-testid="delete-btn"
+                  className="delete-btn"
                   onClick={ () => dispatchDeleteExpense(
                     expense.id, twoDecimalDigitsConvertedValue,
                   ) }
                 >
+                  <BiTrashAlt />
                   Excluir
                 </button>
               </td>
