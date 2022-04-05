@@ -8,7 +8,7 @@ class Expenses extends Component {
     const { expenses, dispatchDeleteExpense, dispatchEditExpense } = this.props;
     return (
       <tbody>
-        { expenses.map((expense, index) => {
+        { expenses.map((expense) => {
           const twoDecimalDigitsValue = parseFloat(expense.value).toFixed(2);
           const currencyArray = Object
             .entries(expense.exchangeRates)
@@ -18,7 +18,7 @@ class Expenses extends Component {
           const twoDecimalDigitsConvertedValue = (expense.value * currencyArray[0][1].ask)
             .toFixed(2);
           return (
-            <tr key={ index }>
+            <tr key={ expense.id }>
               <td>{expense.description}</td>
               <td>{expense.tag}</td>
               <td>{expense.method}</td>

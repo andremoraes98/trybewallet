@@ -17,10 +17,19 @@ export const requestJSON = () => ({
   type: START_REQUEST,
 });
 
-export const getInitialsOfCurrency = (currencies) => ({
-  type: SAVE_CURRENCY,
-  currencies,
-});
+export const getInitialsOfCurrency = (currencies, expenses) => {
+  const startValues = expenses
+    .map((expense) => expense.value * Object.entries(expense.exchangeRates)
+      .filter((currency) => currency[0] === expense.currency)[0][1].ask);
+  const totalValue = startValues
+    .reduce((acumulator, startValue) => acumulator + startValue, 0);
+  return {
+    type: SAVE_CURRENCY,
+    currencies,
+    expenses,
+    totalValue,
+  };
+};
 
 export const deleteExpense = (expenseId, expenseValue) => ({
   type: DELETE_EXPENSE,
@@ -33,12 +42,12 @@ export const editExpense = (expenseId) => ({
   expenseId,
 });
 
-export const fetchCurrencyJSONFromAPI = () => async (dispatch) => {
+export const fetchCurrencyJSONFromAPI = (expenses) => async (dispatch) => {
   dispatch(requestJSON());
   const response = await fetch(URL_ECONOMIA);
   const data = await response.json();
   const dataWithOutUSDT = Object.keys(data).filter((currency) => currency !== 'USDT');
-  return dispatch(getInitialsOfCurrency(dataWithOutUSDT));
+  return dispatch(getInitialsOfCurrency(dataWithOutUSDT, expenses));
 };
 
 export const saveExpenseInfos = (id, expenseInfos, exchangeRates) => {

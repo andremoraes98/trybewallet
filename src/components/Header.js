@@ -6,7 +6,6 @@ import crypto from '../images/crypto.png';
 class Header extends Component {
   render() {
     const { userEmail, totalValue } = this.props;
-    const noNullTotalValue = totalValue || 0;
     return (
       <header>
         <img src={ crypto } alt="Crypto Wallet" />
@@ -17,7 +16,7 @@ class Header extends Component {
           </p>
 
           <p data-testid="total-field">
-            { noNullTotalValue }
+            { totalValue || 0 }
           </p>
 
           <p data-testid="header-currency-field">

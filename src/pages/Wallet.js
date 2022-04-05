@@ -9,8 +9,8 @@ import EdittionWalletForm from '../components/EdittionWalletForm';
 
 class Wallet extends React.Component {
   componentDidMount() {
-    const { getDataFromAPI } = this.props;
-    getDataFromAPI();
+    const { getDataFromAPI, expenses } = this.props;
+    getDataFromAPI(expenses);
   }
 
   render() {
@@ -27,15 +27,17 @@ class Wallet extends React.Component {
 
 const mapStateToProps = (state) => ({
   wantToEdit: state.wallet.wantToEdit,
+  expenses: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getDataFromAPI: () => dispatch(fetchCurrencyJSONFromAPI()),
+  getDataFromAPI: (expense) => dispatch(fetchCurrencyJSONFromAPI(expense)),
 });
 
 Wallet.propTypes = {
   getDataFromAPI: Proptypes.func.isRequired,
   wantToEdit: Proptypes.bool.isRequired,
+  expenses: Proptypes.arrayOf(Proptypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

@@ -28,6 +28,8 @@ const wallet = (state = WALLET_INITIAL_STATE, action) => {
       ...state,
       currencies: action.currencies,
       isFetching: false,
+      totalValue: action.totalValue,
+      expenses: action.expenses,
     };
   case SAVE_EXPENSE_INFO:
     return {
