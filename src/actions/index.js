@@ -17,19 +17,11 @@ export const requestJSON = () => ({
   type: START_REQUEST,
 });
 
-export const getInitialsOfCurrency = (currencies, expenses) => {
-  const startValues = expenses
-    .map((expense) => expense.value * Object.entries(expense.exchangeRates)
-      .filter((currency) => currency[0] === expense.currency)[0][1].ask);
-  const totalValue = startValues
-    .reduce((acumulator, startValue) => acumulator + startValue, 0);
-  return {
-    type: SAVE_CURRENCY,
-    currencies,
-    expenses,
-    totalValue,
-  };
-};
+export const getInitialsOfCurrency = (currencies, expenses) => ({
+  type: SAVE_CURRENCY,
+  currencies,
+  expenses,
+});
 
 export const deleteExpense = (expenseId, expenseValue) => ({
   type: DELETE_EXPENSE,
