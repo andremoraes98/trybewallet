@@ -6,11 +6,10 @@ import crypto from '../images/crypto.png';
 class Header extends Component {
   render() {
     const { userEmail, expenses } = this.props;
-    const startValues = expenses
-      .map((expense) => expense.value * Object.entries(expense.exchangeRates)
-        .filter((currency) => currency[0] === expense.currency)[0][1].ask);
-    const totalValue = startValues
-      .reduce((acumulator, startValue) => acumulator + startValue, 0);
+    const totalValue = expenses
+      .reduce((acumulator, expense) => acumulator + (expense.value * expense
+        .exchangeRates[expense.currency].ask), 0);
+    console.log(totalValue);
     return (
       <header>
         <img src={ crypto } alt="Crypto Wallet" />
@@ -21,7 +20,7 @@ class Header extends Component {
           </p>
 
           <p data-testid="total-field">
-            { totalValue }
+            { totalValue.toFixed(2) }
           </p>
 
           <p data-testid="header-currency-field">

@@ -42,19 +42,14 @@ export const fetchCurrencyJSONFromAPI = (expenses) => async (dispatch) => {
   return dispatch(getInitialsOfCurrency(dataWithOutUSDT, expenses));
 };
 
-export const saveExpenseInfos = (id, expenseInfos, exchangeRates) => {
-  const valueCurrencyInBRL = Object.entries(exchangeRates)
-    .filter((currency) => currency[0] === expenseInfos.currency);
-  return ({
-    type: SAVE_EXPENSE_INFO,
-    expenseInfos: {
-      id,
-      ...expenseInfos,
-      exchangeRates,
-    },
-    value: expenseInfos.value * (valueCurrencyInBRL[0][1].ask),
-  });
-};
+export const saveExpenseInfos = (id, expenseInfos, exchangeRates) => ({
+  type: SAVE_EXPENSE_INFO,
+  expenseInfos: {
+    id,
+    ...expenseInfos,
+    exchangeRates,
+  },
+});
 
 export const fetchEconomyJSONFromAPI = (id, expenseInfos) => async (dispatch) => {
   dispatch(requestJSON());

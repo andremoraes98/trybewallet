@@ -10,7 +10,6 @@ const WALLET_INITIAL_STATE = {
   currencies: [],
   expenses: [],
   isFetching: false,
-  totalValue: 0,
   expenseValue: 0,
   wantToEdit: false,
   selectedExpense: {},
@@ -28,21 +27,18 @@ const wallet = (state = WALLET_INITIAL_STATE, action) => {
       ...state,
       currencies: action.currencies,
       isFetching: false,
-      totalValue: action.totalValue,
       expenses: action.expenses,
     };
   case SAVE_EXPENSE_INFO:
     return {
       ...state,
       expenses: [...state.expenses, action.expenseInfos],
-      totalValue: Math.trunc((state.totalValue + action.value) * 100) / 100,
       expenseValue: action.value,
     };
   case DELETE_EXPENSE:
     return {
       ...state,
       expenses: state.expenses.filter((expense) => expense.id !== action.expenseId),
-      totalValue: parseFloat(state.totalValue - action.expenseValue),
     };
   case EDIT_EXPENSE:
     return {
